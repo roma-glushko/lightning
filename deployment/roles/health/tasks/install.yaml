@@ -1,0 +1,6 @@
+---
+- name: Upload the health binary to the Raspberry Pi
+  copy:
+    src: "{{ local_bin_path }}"
+    dest: "{{ working_dir }}/health"
+    mode: '0755'

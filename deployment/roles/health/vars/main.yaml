@@ -1,0 +1,9 @@
+---
+home_dir: "/home/{{ filesystem.user }}"
+working_dir: "{{ home_dir }}/.lightning"
+user_service_dir: "{{ home_dir }}/.config/systemd/user"
+
+service_path: "{{ user_service_dir }}/lightning.health.service"
+pid_path: "{{ working_dir }}/health.pid"
+
+local_bin_path: "../../../health/dist/health"

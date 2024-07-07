@@ -1,0 +1,15 @@
+[Unit]
+Description=Lightning / Health
+After=syslog.target network.target
+
+[Service]
+Type=simple
+PrivateDevices=no
+
+WorkingDirectory={{ working_dir }}
+PIDFile={{ pid_path }}
+
+ExecStart={{ working_dir }}/health --addr :4141
+
+[Install]
+WantedBy=multi-user.target

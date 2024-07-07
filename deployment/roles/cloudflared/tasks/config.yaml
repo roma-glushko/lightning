@@ -1,0 +1,16 @@
+---
+- name: create working directory ({{ working_dir }})
+  file:
+    path: "{{ working_dir }}"
+    state: directory
+    owner: "{{ filesystem.user }}"
+    group: "{{ filesystem.group }}"
+    mode: 0750
+
+- name: create cloudflared config ({{ config_path }})
+  template:
+    src: config.yaml.j2
+    dest: "{{ config_path }}"
+    owner: "{{ filesystem.user }}"
+    group: "{{ filesystem.group }}"
+    mode: 0750

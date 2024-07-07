@@ -1,0 +1,16 @@
+---
+- hosts: rpi
+  name: Install or update Lightning
+  become: yes
+  gather_facts: false
+  vars_files:
+    - vars/secrets.yaml
+  roles:
+    - { role: cloudflared, tags: cloudflared }
+    - { role: health, tags: health }
+
+  tasks:
+    - name: Deployment has been completed successfully
+      debug:
+        msg:
+          - "📟 Lightning is ready now"

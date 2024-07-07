@@ -1,0 +1,9 @@
+---
+keyrings_dir: "/usr/share/keyrings"
+home_dir: "/home/{{ filesystem.user }}"
+working_dir: "{{ home_dir }}/.lightning"
+user_service_dir: "{{ home_dir }}/.config/systemd/user"
+
+service_path: "{{ user_service_dir }}/lightning.cloudflared.service"
+config_path: "{{ working_dir }}/cloudflared.yaml"
+pid_path: "{{ working_dir }}/cloudflared.pid"

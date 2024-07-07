@@ -1,0 +1,24 @@
+---
+- name: Create keyrings directory
+  file:
+    path: "{{ keyrings_dir }}"
+    state: directory
+    mode: '0755'
+
+- name: Download and add Cloudflare GPG key
+  get_url:
+    url: "https://pkg.cloudflare.com/cloudflare-main.gpg"
+    dest: "{{ keyrings_dir }}/cloudflare-main.gpg"
+    mode: '0755'
+
+- name: Add Cloudflare repository
+  apt_repository:
+    repo: "deb [signed-by={{ keyrings_dir }}/cloudflare-main.gpg] https://pkg.cloudflare.com/cloudflared jammy main"
+    state: present
+    filename: cloudflared
+
+- name: Install cloudflared
+  apt:
+    name: cloudflared
+    state: latest
+    update_cache: yes

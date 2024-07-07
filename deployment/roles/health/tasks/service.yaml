@@ -1,0 +1,28 @@
+---
+- name: create user service directory
+  file:
+    path: "{{ user_service_dir }}"
+    state: directory
+    owner: "{{ filesystem.user }}"
+    group: "{{ filesystem.group }}"
+    mode: 0750
+
+- name: install health as a service
+  template:
+    src: lightning_health.service.j2
+    dest: "{{ service_path }}"
+    owner: "{{ filesystem.user }}"
+    group: "{{ filesystem.group }}"
+    mode: 0644
+  notify:
+    - reinstall service
+    - restart service
+
+- name: start and enable health service
+  become_user: "{{ filesystem.user }}"
+  systemd:
+    name: lightning.health.service
+    scope: user
+    state: started
+    enabled: yes
+  notify: restart service

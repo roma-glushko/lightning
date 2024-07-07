@@ -1,0 +1,23 @@
+---
+- name: disable service
+  become_user: "{{ filesystem.user }}"
+  systemd:
+    name: lightning.cloudflared.service
+    scope: user
+    enabled: false
+  listen: reinstall service
+
+- name: disable service
+  become_user: "{{ filesystem.user }}"
+  systemd:
+    name: lightning.cloudflared.service
+    scope: user
+    enabled: true
+  listen: reinstall service
+
+- name: restart service
+  become_user: "{{ filesystem.user }}"
+  systemd:
+    name: lightning.cloudflared.service
+    scope: user
+    state: restarted

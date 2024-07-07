@@ -1,0 +1,4 @@
+---
+- import_tasks: deps.yaml
+- import_tasks: config.yaml
+- import_tasks: service.yaml
