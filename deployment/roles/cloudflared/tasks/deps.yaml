@@ -9,6 +9,8 @@
   get_url:
     url: "https://pkg.cloudflare.com/cloudflare-main.gpg"
     dest: "{{ keyrings_dir }}/cloudflare-main.gpg"
+    owner: "{{ filesystem.user }}"
+    group: "{{ filesystem.group }}"
     mode: '0755'
 
 - name: Add Cloudflare repository
